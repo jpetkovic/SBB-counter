@@ -1,0 +1,87 @@
+<resources>
+    <string name="tab_timer">Minuteur</string>
+    <string name="tab_calendar">Calendrier</string>
+    <string name="tab_settings">Paramètres</string>
+    <string name="tab_about">À propos</string>
+    <string name="history_empty">Aucun entraînement pour le moment.</string>
+    <string name="history_cycle">Cycle %1$d</string>
+    <string name="history_delete">Supprimer</string>
+    <string name="history_delete_confirm">Voulez-vous vraiment supprimer cette entrée ?</string>
+    <string name="exercise_defaults_saved">Valeurs par défaut enregistrées pour %1$s</string>
+    <string name="cancel_workout_title">Annuler l\'entraînement</string>
+    <string name="cancel_workout_confirm">Annuler la progression actuelle de l\'entraînement et recommencer ?</string>
+    <string name="action_cancel_workout">Annuler l\'entraînement</string>
+
+    <string name="calendar_title_default">Entraînement</string>
+    <string name="calendar_title_with_exercise">Entraînement – %1$s</string>
+    <string name="detail_body_area">Partie du corps : %1$s</string>
+    <string name="detail_exercise">Exercice : %1$s</string>
+    <string name="detail_muscle">Groupe musculaire : %1$s</string>
+    <string name="detail_weight">Poids : %1$d kg</string>
+    <string name="detail_rep_count">Nombre de séries : %1$d</string>
+    <string name="detail_repetitions">Répétitions : %1$s</string>
+    <string name="detail_rest">Repos : %1$d s</string>
+    <string name="value_placeholder">-</string>
+    <string name="calendar_app_not_found">Application Calendrier introuvable</string>
+
+    <string name="label_sound_setting">Son du minuteur</string>
+    <string name="label_language_setting">Langue</string>
+    <string name="label_sound_threshold">Sons à partir de</string>
+    <string name="label_weight_unit">Unité de poids</string>
+    <string name="label_duck_sound">Atténuer le son</string>
+    <string name="add_item">Ajouter</string>
+    <string name="dialog_add_title_muscle">Nouveau groupe musculaire</string>
+    <string name="dialog_add_title_exercise">Nouvel exercice</string>
+    <string name="action_rename">Renommer</string>
+    <string name="action_remove">Supprimer</string>
+    <string name="action_leave">Quitter</string>
+    <string name="action_copy_times">Copier les temps</string>
+    <string name="dialog_rename_title_exercise">Renommer l\'exercice</string>
+    <string name="confirm_remove_exercise">Voulez-vous vraiment supprimer cet exercice ?</string>
+    <string name="dialog_rename_title_muscle">Renommer le groupe musculaire</string>
+    <string name="confirm_remove_muscle">Voulez-vous vraiment supprimer ce groupe musculaire ?</string>
+    <string name="select_muscle_first">Sélectionnez d\'abord un groupe musculaire</string>
+    <string name="save_to_calendar">Enregistrer dans le calendrier</string>
+    <string name="label_keep_screen_on">Ne pas éteindre l\'écran</string>
+    <string-array name="beep_sound_names">
+        <item>Bip</item>
+        <item>Bip 2</item>
+        <item>Confirmation</item>
+        <item>Avertissement</item>
+        <item>Clic</item>
+    </string-array>
+    <string name="about_version">Version %1$s</string>
+    <string name="label_rep">Séries</string>
+    <string name="label_time">Temps</string>
+    <string name="label_delay">Repos</string>
+    <string name="label_repetitions">Réps.</string>
+    <string name="start">Démarrer</string>
+    <string name="stop">Arrêter</string>
+    <string name="end_workout">Terminer l\'entraînement</string>
+    <string name="training_elapsed">Durée de l\'entraînement : %1$s</string>
+    <string name="arrow_up">▲</string>
+    <string name="arrow_left">◀</string>
+    <string name="arrow_right">▶</string>
+    <string name="arrow_down">▼</string>
+
+    <string name="body_area_upper">Haut du corps</string>
+    <string name="body_area_core">Milieu du corps</string>
+    <string name="body_area_lower">Bas du corps</string>
+
+    <string name="muscle_back">Dos</string>
+    <string name="muscle_shoulders">Épaules</string>
+    <string name="muscle_traps">Trapèzes</string>
+    <string name="muscle_chest">Pectoraux</string>
+    <string name="muscle_biceps">Biceps</string>
+    <string name="muscle_triceps">Triceps</string>
+    <string name="muscle_forearms">Avant-bras</string>
+
+    <string name="muscle_abs">Abdominaux</string>
+    <string name="muscle_obliques">Obliques</string>
+    <string name="muscle_lower_back">Bas du dos</string>
+
+    <string name="muscle_hips">Hanches</string>
+    <string name="muscle_thighs">Cuisses</string>
+    <string name="muscle_calves">Mollets</string>
+    <string name="muscle_glutes">Fessiers</string>
+</resources>

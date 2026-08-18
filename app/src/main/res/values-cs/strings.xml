@@ -1,0 +1,115 @@
+<resources>
+    <string name="tab_timer">Časovač</string>
+    <string name="tab_calendar">Kalendář</string>
+    <string name="tab_settings">Nastavení</string>
+    <string name="tab_about">O aplikaci</string>
+    <string name="history_empty">Zatím žádné tréninky.</string>
+    <string name="history_cycle">Cyklus %1$d</string>
+    <string name="history_delete">Smazat</string>
+    <string name="history_delete_confirm">Opravdu chcete smazat tento záznam?</string>
+    <string name="exercise_defaults_saved">Výchozí hodnoty uloženy pro %1$s</string>
+    <string name="cancel_workout_title">Zrušit trénink</string>
+    <string name="cancel_workout_confirm">Opravdu chcete zrušit dosavadní průběh tréninku a začít znovu?</string>
+    <string name="action_cancel_workout">Zrušit trénink</string>
+
+    <string name="calendar_title_default">Trénink</string>
+    <string name="calendar_title_with_exercise">Trénink – %1$s</string>
+    <string name="detail_body_area">Část těla: %1$s</string>
+    <string name="detail_exercise">Cvik: %1$s</string>
+    <string name="detail_muscle">Partie: %1$s</string>
+    <string name="detail_weight">Váha: %1$d kg</string>
+    <string name="detail_rep_count">Počet sérií: %1$d</string>
+    <string name="detail_repetitions">Opakování: %1$s</string>
+    <string name="detail_rest">Pauza: %1$d s</string>
+    <string name="value_placeholder">-</string>
+    <string name="calendar_app_not_found">Nenalezena aplikace Kalendář</string>
+
+    <string name="label_sound_setting">Zvuk časovače</string>
+    <string name="label_language_setting">Jazyk</string>
+    <string name="label_sound_threshold">Zvuky od</string>
+    <string name="label_weight_unit">Jednotka váhy</string>
+    <string name="label_duck_sound">Ztlumit zvuk</string>
+    <string name="add_item">Přidat</string>
+    <string name="dialog_add_title_muscle">Nová partie</string>
+    <string name="dialog_add_title_exercise">Nový cvik</string>
+    <string name="action_rename">Přejmenovat</string>
+    <string name="action_remove">Odstranit</string>
+    <string name="action_leave">Opustit</string>
+    <string name="action_copy_times">Zkopírovat časy</string>
+    <string name="dialog_rename_title_exercise">Přejmenovat cvik</string>
+    <string name="confirm_remove_exercise">Opravdu chcete tento cvik odstranit?</string>
+    <string name="dialog_rename_title_muscle">Přejmenovat partii</string>
+    <string name="confirm_remove_muscle">Opravdu chcete tuto partii zrušit?</string>
+    <string name="select_muscle_first">Nejprve vyberte svalovou partii</string>
+    <string name="save_to_calendar">Ukládat do kalendáře</string>
+    <string name="label_keep_screen_on">Nevypínat display</string>
+    <string-array name="beep_sound_names">
+        <item>Pípnutí</item>
+        <item>Pípnutí 2</item>
+        <item>Potvrzení</item>
+        <item>Varování</item>
+        <item>Klik</item>
+    </string-array>
+    <string name="about_version">Verze %1$s</string>
+    <string name="label_rep">Série</string>
+    <string name="label_time">Práce</string>
+    <string name="label_delay">Pauza</string>
+    <string name="label_repetitions">Opak.</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="end_workout">Konec tréninku</string>
+    <string name="training_elapsed">Čas tréninku: %1$s</string>
+    <string name="arrow_up">▲</string>
+    <string name="arrow_left">◀</string>
+    <string name="arrow_right">▶</string>
+    <string name="arrow_down">▼</string>
+
+    <string name="body_area_upper">Horní tělo</string>
+    <string name="body_area_core">Střed těla</string>
+    <string name="body_area_lower">Spodní tělo</string>
+
+    <string name="muscle_back">Záda</string>
+    <string name="muscle_shoulders">Ramena</string>
+    <string name="muscle_traps">Trapézy</string>
+    <string name="muscle_chest">Prsa</string>
+    <string name="muscle_biceps">Biceps</string>
+    <string name="muscle_triceps">Triceps</string>
+    <string name="muscle_forearms">Předloktí</string>
+
+    <string name="muscle_abs">Břišní svaly</string>
+    <string name="muscle_obliques">Šikmé svaly</string>
+    <string name="muscle_lower_back">Spodní záda</string>
+
+    <string name="muscle_hips">Kyčle</string>
+    <string name="muscle_thighs">Stehna</string>
+    <string name="muscle_calves">Lýtka</string>
+    <string name="muscle_glutes">Hýždě</string>
+
+    <string name="exercise_back_1">Předklon</string>
+    <string name="exercise_back_2">Shyby šir.</string>
+    <string name="exercise_back_3">Shyby úzk.</string>
+    <string name="exercise_back_4">Kladka</string>
+    <string name="exercise_back_5">Jednoruč</string>
+
+    <string name="exercise_chest_1">Bench press</string>
+    <string name="exercise_chest_2">Tlaky jednoruček</string>
+    <string name="exercise_chest_3">Pullover</string>
+    <string name="exercise_chest_4">Rozpažky</string>
+    <string name="exercise_chest_5">Peck deck</string>
+
+    <string name="exercise_biceps_1">Jednoručky</string>
+    <string name="exercise_biceps_2">Velká činka</string>
+    <string name="exercise_biceps_3">EZ</string>
+    <string name="exercise_biceps_4">Kladivové zdvihy</string>
+    <string name="exercise_biceps_5">Izolovaná jednoručka</string>
+
+    <string name="exercise_triceps_1">Francouzský tlak</string>
+    <string name="exercise_triceps_2">Stahování kladky</string>
+    <string name="exercise_triceps_3">Jednoručka za hlavou</string>
+    <string name="exercise_triceps_4">Kliky</string>
+    <string name="exercise_triceps_5">Jednoručka za hlavou obouruč</string>
+    <string name="exercise_triceps_6">Kladka v předklonu</string>
+
+    <string name="exercise_forearms_1">Kolečko do ruky</string>
+    <string name="exercise_forearms_2">Jednoručka</string>
+</resources>
