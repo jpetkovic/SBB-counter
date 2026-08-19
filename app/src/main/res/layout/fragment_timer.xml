@@ -673,6 +673,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:singleLine="true"
+            android:backgroundTint="@color/bg_button_start_tint"
+            android:textColor="@color/white"
             android:enabled="false"
             android:text="@string/end_workout" />
 
