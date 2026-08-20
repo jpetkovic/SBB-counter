@@ -127,6 +127,21 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             CalendarSettings.setSaveToCalendarEnabled(requireContext(), isChecked)
         }
 
+        val calendarColors = CalendarEventColor.entries.toList()
+        val calendarColorNames = resources.getStringArray(R.array.calendar_color_names).toList()
+        val spinnerCalendarColor = view.findViewById<Spinner>(R.id.spinnerCalendarColor)
+        spinnerCalendarColor.adapter = CalendarColorSpinnerAdapter(requireContext(), calendarColors, calendarColorNames)
+
+        spinnerCalendarColor.setSelection(calendarColors.indexOf(CalendarColorSettings.getSelected(requireContext())))
+
+        spinnerCalendarColor.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                CalendarColorSettings.setSelected(requireContext(), calendarColors[position])
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) = Unit
+        }
+
         val switchDuckSound = view.findViewById<SwitchCompat>(R.id.switchDuckSound)
         switchDuckSound.isChecked = DuckSoundSettings.isDuckSoundEnabled(requireContext())
         switchDuckSound.setOnCheckedChangeListener { _, isChecked ->

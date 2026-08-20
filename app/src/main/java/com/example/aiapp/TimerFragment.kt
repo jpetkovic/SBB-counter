@@ -1,9 +1,10 @@
 package com.example.aiapp
 
+import android.Manifest
 import android.app.AlertDialog
-import android.content.ActivityNotFoundException
+import android.content.ContentValues
 import android.content.Context
-import android.content.Intent
+import android.content.pm.PackageManager
 import android.media.AudioAttributes
 import android.media.AudioManager
 import android.media.ToneGenerator
@@ -30,6 +31,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -48,6 +50,13 @@ private const val REPEAT_INTERVAL_STEP_MS = 25L
 private const val BODY_AREA_UPPER = "upper"
 private const val BODY_AREA_CORE = "core"
 private const val BODY_AREA_LOWER = "lower"
+
+private data class CalendarEventData(
+    val title: String,
+    val description: String,
+    val startMillis: Long,
+    val endMillis: Long,
+)
 
 private class RepeatingClickListener(private val action: () -> Unit) : View.OnTouchListener {
     private val handler = Handler(Looper.getMainLooper())
@@ -126,6 +135,21 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
 
     private val handler = Handler(Looper.getMainLooper())
     private val toneGenerator = ToneGenerator(AudioManager.STREAM_MUSIC, ToneGenerator.MAX_VOLUME)
+
+    private var pendingCalendarEvent: CalendarEventData? = null
+    private val calendarPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions(),
+    ) { results ->
+        val event = pendingCalendarEvent
+        pendingCalendarEvent = null
+        if (event != null) {
+            if (results[Manifest.permission.WRITE_CALENDAR] == true) {
+                insertCalendarEvent(event)
+            } else {
+                Toast.makeText(requireContext(), getString(R.string.calendar_permission_denied), Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
     private lateinit var repField: SpinField
     private lateinit var timeField: SpinField
@@ -1136,10 +1160,8 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
         applyExerciseDefaultsIfAvailable {}
     }
 
-    private fun saveHistoryToDatabase() {
-        if (viewModel.pendingCompletedCycles.isEmpty()) return
-        val cycles = viewModel.pendingCompletedCycles.toList()
-        viewModel.pendingCompletedCycles.clear()
+    private fun saveHistoryToDatabase(cycles: List<CompletedCycle>) {
+        if (cycles.isEmpty()) return
         Thread {
             cycles.forEach { cycle ->
                 dbHelper.insertWorkout(
@@ -1159,7 +1181,9 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
             finalizeStop()
         }
 
-        saveHistoryToDatabase()
+        val completedCycles = viewModel.pendingCompletedCycles.toList()
+        viewModel.pendingCompletedCycles.clear()
+        saveHistoryToDatabase(completedCycles)
 
         if (!CalendarSettings.isSaveToCalendarEnabled(requireContext())) {
             clearSession()
@@ -1167,58 +1191,119 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
             return
         }
 
-        val cycles = viewModel.sessionCycles.ifEmpty {
+        val records = if (completedCycles.isNotEmpty()) {
+            completedCycles.map { cycle ->
+                WorkoutCycleRecord(
+                    bodyArea = cycle.bodyArea,
+                    muscle = cycle.muscle,
+                    exercise = cycle.exercise,
+                    weightKg = cycle.weightKg,
+                    rep = cycle.completedRep,
+                    timeSec = cycle.time,
+                    delaySec = cycle.delay,
+                    repetitions = cycle.repetitions,
+                    createdAt = cycle.startedAt,
+                )
+            }
+        } else {
             listOf(
-                WorkoutCycle(
+                WorkoutCycleRecord(
                     bodyArea = getSelectedBodyArea() ?: getString(R.string.tab_timer),
                     muscle = getSelectedMuscle(),
                     exercise = getSelectedExercise(),
                     weightKg = viewModel.weightKg,
-                    rep = viewModel.repValue,
-                    time = viewModel.timeValue,
-                    delay = viewModel.delayValue,
-                    startedAt = System.currentTimeMillis(),
+                    rep = 0,
+                    timeSec = viewModel.timeValue,
+                    delaySec = viewModel.delayValue,
+                    repetitions = "",
+                    createdAt = System.currentTimeMillis(),
                 ),
             )
         }
 
-        val totalSeconds = cycles.sumOf { it.totalSeconds }
-        val exerciseNames = cycles.mapNotNull { it.exercise ?: it.muscle }.distinct()
+        val totalSeconds = records.sumOf { it.rep * it.timeSec + maxOf(it.rep - 1, 0) * it.delaySec }
+        val exerciseNames = records.mapNotNull { it.exercise ?: it.muscle }.distinct()
         val title = if (exerciseNames.isNotEmpty()) {
             getString(R.string.calendar_title_with_exercise, exerciseNames.joinToString(", "))
         } else {
             getString(R.string.calendar_title_default)
         }
 
-        val placeholder = getString(R.string.value_placeholder)
-        val description = buildString {
-            cycles.forEachIndexed { index, cycle ->
-                append(getString(R.string.history_cycle, index + 1)).append("\n")
-                append(getString(R.string.detail_body_area, cycle.bodyArea)).append("\n")
-                append(getString(R.string.detail_muscle, cycle.muscle ?: placeholder)).append("\n")
-                append(getString(R.string.detail_exercise, cycle.exercise ?: placeholder)).append("\n")
-                append(getString(R.string.detail_rep_count, cycle.rep)).append("\n")
-                if (index != cycles.lastIndex) append("\n")
-            }
-            append("\n")
-            append(getString(R.string.training_elapsed, formatWorkoutDuration(totalSeconds)))
-        }
+        val description = buildSessionDetailMessage(requireContext(), records)
 
         val startMillis = viewModel.trainingStartTime ?: System.currentTimeMillis()
-        val intent = Intent(Intent.ACTION_INSERT)
-            .setData(CalendarContract.Events.CONTENT_URI)
-            .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, startMillis)
-            .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, startMillis + totalSeconds * 1000L)
-            .putExtra(CalendarContract.Events.TITLE, title)
-            .putExtra(CalendarContract.Events.DESCRIPTION, description)
+        val endMillis = startMillis + totalSeconds * 1000L
+        saveEventToCalendar(CalendarEventData(title, description, startMillis, endMillis))
+        clearSession()
+        syncUiFromViewModel()
+    }
 
-        try {
-            startActivity(intent)
-            clearSession()
-            syncUiFromViewModel()
-        } catch (e: ActivityNotFoundException) {
-            Toast.makeText(requireContext(), getString(R.string.calendar_app_not_found), Toast.LENGTH_SHORT).show()
+    private fun saveEventToCalendar(event: CalendarEventData) {
+        if (hasCalendarWritePermission()) {
+            insertCalendarEvent(event)
+        } else {
+            pendingCalendarEvent = event
+            calendarPermissionLauncher.launch(
+                arrayOf(Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR),
+            )
         }
+    }
+
+    private fun hasCalendarWritePermission(): Boolean {
+        return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_CALENDAR) ==
+            PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun insertCalendarEvent(event: CalendarEventData) {
+        val context = requireContext().applicationContext
+        Thread {
+            val calendarId = getWritableCalendarId(context)
+            if (calendarId == null) {
+                handler.post {
+                    if (!isAdded) return@post
+                    Toast.makeText(requireContext(), getString(R.string.calendar_app_not_found), Toast.LENGTH_SHORT).show()
+                }
+                return@Thread
+            }
+            val values = ContentValues().apply {
+                put(CalendarContract.Events.CALENDAR_ID, calendarId)
+                put(CalendarContract.Events.TITLE, event.title)
+                put(CalendarContract.Events.DESCRIPTION, event.description)
+                put(CalendarContract.Events.DTSTART, event.startMillis)
+                put(CalendarContract.Events.DTEND, event.endMillis)
+                put(CalendarContract.Events.EVENT_TIMEZONE, java.util.TimeZone.getDefault().id)
+                CalendarColorSettings.getSelected(context).colorKey?.let { colorKey ->
+                    put(CalendarContract.Events.EVENT_COLOR_KEY, colorKey)
+                }
+            }
+            context.contentResolver.insert(CalendarContract.Events.CONTENT_URI, values)
+            handler.post {
+                if (!isAdded) return@post
+                Toast.makeText(requireContext(), getString(R.string.calendar_event_saved), Toast.LENGTH_SHORT).show()
+            }
+        }.start()
+    }
+
+    private fun getWritableCalendarId(context: Context): Long? {
+        val projection = arrayOf(
+            CalendarContract.Calendars._ID,
+            CalendarContract.Calendars.IS_PRIMARY,
+            CalendarContract.Calendars.CALENDAR_ACCESS_LEVEL,
+        )
+        context.contentResolver.query(CalendarContract.Calendars.CONTENT_URI, projection, null, null, null)?.use { cursor ->
+            var fallbackId: Long? = null
+            while (cursor.moveToNext()) {
+                val accessLevel = cursor.getInt(cursor.getColumnIndexOrThrow(CalendarContract.Calendars.CALENDAR_ACCESS_LEVEL))
+                if (accessLevel < CalendarContract.Calendars.CAL_ACCESS_CONTRIBUTOR) continue
+                val id = cursor.getLong(cursor.getColumnIndexOrThrow(CalendarContract.Calendars._ID))
+                val isPrimaryIndex = cursor.getColumnIndex(CalendarContract.Calendars.IS_PRIMARY)
+                val isPrimary = isPrimaryIndex >= 0 && cursor.getInt(isPrimaryIndex) != 0
+                if (isPrimary) return id
+                if (fallbackId == null) fallbackId = id
+            }
+            return fallbackId
+        }
+        return null
     }
 
     private fun startTimer() {

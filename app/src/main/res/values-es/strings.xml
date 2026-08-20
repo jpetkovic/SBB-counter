@@ -23,6 +23,8 @@
     <string name="detail_rest">Descanso: %1$d s</string>
     <string name="value_placeholder">-</string>
     <string name="calendar_app_not_found">No se encontró la aplicación Calendario</string>
+    <string name="calendar_permission_denied">Sin permiso no se puede guardar en el calendario</string>
+    <string name="calendar_event_saved">Entrenamiento guardado en el calendario</string>
 
     <string name="label_sound_setting">Sonido del temporizador</string>
     <string name="label_language_setting">Idioma</string>
@@ -43,6 +45,21 @@
     <string name="select_muscle_first">Selecciona primero un grupo muscular</string>
     <string name="save_to_calendar">Guardar en el calendario</string>
     <string name="label_keep_screen_on">No apagar la pantalla</string>
+    <string name="label_calendar_color">Color del evento</string>
+    <string-array name="calendar_color_names">
+        <item>Predeterminado</item>
+        <item>Tomate</item>
+        <item>Flamenco</item>
+        <item>Mandarina</item>
+        <item>Plátano</item>
+        <item>Salvia</item>
+        <item>Albahaca</item>
+        <item>Pavo real</item>
+        <item>Arándano</item>
+        <item>Lavanda</item>
+        <item>Uva</item>
+        <item>Grafito</item>
+    </string-array>
     <string-array name="beep_sound_names">
         <item>Pitido</item>
         <item>Pitido 2</item>
@@ -84,4 +101,32 @@
     <string name="muscle_thighs">Muslos</string>
     <string name="muscle_calves">Pantorrillas</string>
     <string name="muscle_glutes">Glúteos</string>
+
+    <string name="exercise_back_1">Remo inclinado</string>
+    <string name="exercise_back_2">Dominadas anchas</string>
+    <string name="exercise_back_3">Dominadas cerradas</string>
+    <string name="exercise_back_4">Jalón al pecho</string>
+    <string name="exercise_back_5">Remo a una mano</string>
+
+    <string name="exercise_chest_1">Press de banca</string>
+    <string name="exercise_chest_2">Press con mancuernas</string>
+    <string name="exercise_chest_3">Pullover</string>
+    <string name="exercise_chest_4">Aperturas</string>
+    <string name="exercise_chest_5">Peck deck</string>
+
+    <string name="exercise_biceps_1">Curl con mancuernas</string>
+    <string name="exercise_biceps_2">Curl con barra</string>
+    <string name="exercise_biceps_3">Curl con barra Z</string>
+    <string name="exercise_biceps_4">Curl martillo</string>
+    <string name="exercise_biceps_5">Curl de concentración</string>
+
+    <string name="exercise_triceps_1">Press francés</string>
+    <string name="exercise_triceps_2">Extensión en polea</string>
+    <string name="exercise_triceps_3">Extensión sobre cabeza (1 brazo)</string>
+    <string name="exercise_triceps_4">Flexiones</string>
+    <string name="exercise_triceps_5">Extensión sobre cabeza (2 manos)</string>
+    <string name="exercise_triceps_6">Patada de tríceps en polea</string>
+
+    <string name="exercise_forearms_1">Rodillo de muñeca</string>
+    <string name="exercise_forearms_2">Curl de muñeca</string>
 </resources>

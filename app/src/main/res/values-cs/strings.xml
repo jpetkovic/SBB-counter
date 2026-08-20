@@ -23,6 +23,8 @@
     <string name="detail_rest">Pauza: %1$d s</string>
     <string name="value_placeholder">-</string>
     <string name="calendar_app_not_found">Nenalezena aplikace Kalendář</string>
+    <string name="calendar_permission_denied">Bez oprávnění nelze uložit do kalendáře</string>
+    <string name="calendar_event_saved">Trénink uložen do kalendáře</string>
 
     <string name="label_sound_setting">Zvuk časovače</string>
     <string name="label_language_setting">Jazyk</string>
@@ -43,6 +45,21 @@
     <string name="select_muscle_first">Nejprve vyberte svalovou partii</string>
     <string name="save_to_calendar">Ukládat do kalendáře</string>
     <string name="label_keep_screen_on">Nevypínat display</string>
+    <string name="label_calendar_color">Barva události</string>
+    <string-array name="calendar_color_names">
+        <item>Výchozí</item>
+        <item>Rajče</item>
+        <item>Plameňák</item>
+        <item>Mandarinka</item>
+        <item>Banán</item>
+        <item>Šalvěj</item>
+        <item>Bazalka</item>
+        <item>Páv</item>
+        <item>Borůvka</item>
+        <item>Levandule</item>
+        <item>Hroznové víno</item>
+        <item>Grafit</item>
+    </string-array>
     <string-array name="beep_sound_names">
         <item>Pípnutí</item>
         <item>Pípnutí 2</item>

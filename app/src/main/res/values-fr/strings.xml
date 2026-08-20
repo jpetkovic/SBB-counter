@@ -23,6 +23,8 @@
     <string name="detail_rest">Repos : %1$d s</string>
     <string name="value_placeholder">-</string>
     <string name="calendar_app_not_found">Application Calendrier introuvable</string>
+    <string name="calendar_permission_denied">Impossible d\'enregistrer dans le calendrier sans autorisation</string>
+    <string name="calendar_event_saved">Entraînement enregistré dans le calendrier</string>
 
     <string name="label_sound_setting">Son du minuteur</string>
     <string name="label_language_setting">Langue</string>
@@ -43,6 +45,21 @@
     <string name="select_muscle_first">Sélectionnez d\'abord un groupe musculaire</string>
     <string name="save_to_calendar">Enregistrer dans le calendrier</string>
     <string name="label_keep_screen_on">Ne pas éteindre l\'écran</string>
+    <string name="label_calendar_color">Couleur de l\'événement</string>
+    <string-array name="calendar_color_names">
+        <item>Par défaut</item>
+        <item>Tomate</item>
+        <item>Flamant rose</item>
+        <item>Mandarine</item>
+        <item>Banane</item>
+        <item>Sauge</item>
+        <item>Basilic</item>
+        <item>Paon</item>
+        <item>Myrtille</item>
+        <item>Lavande</item>
+        <item>Raisin</item>
+        <item>Graphite</item>
+    </string-array>
     <string-array name="beep_sound_names">
         <item>Bip</item>
         <item>Bip 2</item>
@@ -84,4 +101,32 @@
     <string name="muscle_thighs">Cuisses</string>
     <string name="muscle_calves">Mollets</string>
     <string name="muscle_glutes">Fessiers</string>
+
+    <string name="exercise_back_1">Rowing buste penché</string>
+    <string name="exercise_back_2">Tractions large</string>
+    <string name="exercise_back_3">Tractions serrées</string>
+    <string name="exercise_back_4">Tirage poitrine</string>
+    <string name="exercise_back_5">Rowing unilatéral</string>
+
+    <string name="exercise_chest_1">Développé couché</string>
+    <string name="exercise_chest_2">Développé haltères</string>
+    <string name="exercise_chest_3">Pullover</string>
+    <string name="exercise_chest_4">Écartés</string>
+    <string name="exercise_chest_5">Peck deck</string>
+
+    <string name="exercise_biceps_1">Curl haltères</string>
+    <string name="exercise_biceps_2">Curl barre</string>
+    <string name="exercise_biceps_3">Curl barre EZ</string>
+    <string name="exercise_biceps_4">Curl marteau</string>
+    <string name="exercise_biceps_5">Curl concentré</string>
+
+    <string name="exercise_triceps_1">Barre au front</string>
+    <string name="exercise_triceps_2">Extension poulie</string>
+    <string name="exercise_triceps_3">Extension nuque (1 bras)</string>
+    <string name="exercise_triceps_4">Pompes</string>
+    <string name="exercise_triceps_5">Extension nuque (2 mains)</string>
+    <string name="exercise_triceps_6">Extension poulie penché</string>
+
+    <string name="exercise_forearms_1">Rouleau de poignet</string>
+    <string name="exercise_forearms_2">Curl de poignet</string>
 </resources>

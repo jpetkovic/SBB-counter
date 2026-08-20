@@ -23,6 +23,8 @@
     <string name="detail_rest">Pause: %1$d s</string>
     <string name="value_placeholder">-</string>
     <string name="calendar_app_not_found">Kalender-App nicht gefunden</string>
+    <string name="calendar_permission_denied">Ohne Berechtigung kann nicht im Kalender gespeichert werden</string>
+    <string name="calendar_event_saved">Training im Kalender gespeichert</string>
 
     <string name="label_sound_setting">Timer-Ton</string>
     <string name="label_language_setting">Sprache</string>
@@ -43,6 +45,21 @@
     <string name="select_muscle_first">Wählen Sie zuerst eine Muskelgruppe aus</string>
     <string name="save_to_calendar">Im Kalender speichern</string>
     <string name="label_keep_screen_on">Bildschirm nicht ausschalten</string>
+    <string name="label_calendar_color">Ereignisfarbe</string>
+    <string-array name="calendar_color_names">
+        <item>Standard</item>
+        <item>Tomate</item>
+        <item>Flamingo</item>
+        <item>Mandarine</item>
+        <item>Banane</item>
+        <item>Salbei</item>
+        <item>Basilikum</item>
+        <item>Pfau</item>
+        <item>Heidelbeere</item>
+        <item>Lavendel</item>
+        <item>Traube</item>
+        <item>Graphit</item>
+    </string-array>
     <string-array name="beep_sound_names">
         <item>Piepton</item>
         <item>Piepton 2</item>
@@ -84,4 +101,32 @@
     <string name="muscle_thighs">Oberschenkel</string>
     <string name="muscle_calves">Waden</string>
     <string name="muscle_glutes">Gesäß</string>
+
+    <string name="exercise_back_1">Rudern vorgebeugt</string>
+    <string name="exercise_back_2">Klimmzüge weit</string>
+    <string name="exercise_back_3">Klimmzüge eng</string>
+    <string name="exercise_back_4">Latzug</string>
+    <string name="exercise_back_5">Einarmiges Rudern</string>
+
+    <string name="exercise_chest_1">Bankdrücken</string>
+    <string name="exercise_chest_2">Kurzhantel-Drücken</string>
+    <string name="exercise_chest_3">Überzüge</string>
+    <string name="exercise_chest_4">Fliegende</string>
+    <string name="exercise_chest_5">Butterfly</string>
+
+    <string name="exercise_biceps_1">Kurzhantel-Curls</string>
+    <string name="exercise_biceps_2">Langhantel-Curl</string>
+    <string name="exercise_biceps_3">SZ-Stangen-Curl</string>
+    <string name="exercise_biceps_4">Hammer-Curls</string>
+    <string name="exercise_biceps_5">Konzentrationscurls</string>
+
+    <string name="exercise_triceps_1">French Press</string>
+    <string name="exercise_triceps_2">Kabelziehen (Trizeps)</string>
+    <string name="exercise_triceps_3">Überkopf-Trizepsdrücken (1 Arm)</string>
+    <string name="exercise_triceps_4">Liegestütze</string>
+    <string name="exercise_triceps_5">Überkopf-Trizepsdrücken (2 Hände)</string>
+    <string name="exercise_triceps_6">Kabelzug vorgebeugt</string>
+
+    <string name="exercise_forearms_1">Handgelenkroller</string>
+    <string name="exercise_forearms_2">Handgelenk-Curl</string>
 </resources>

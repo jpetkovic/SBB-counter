@@ -15,13 +15,13 @@ val appVersionName = "$versionMajor.${buildNumber.toString().padStart(4, '0')}"
 android {
     namespace = "com.example.aiapp"
     compileSdk {
-        version = release(37)
+        version = release(34)
     }
 
     defaultConfig {
         applicationId = "com.example.aiapp"
         minSdk = 28
-        targetSdk = 37
+        targetSdk = 34
         versionCode = buildNumber
         versionName = appVersionName
 
